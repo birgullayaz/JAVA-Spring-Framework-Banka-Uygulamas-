@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hesaplar</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        h1 { color: #667eea; margin-bottom: 20px; }
+        .btn { background: #667eea; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-bottom: 20px; margin-right: 10px; }
+        .btn-success { background: #28a745; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #667eea; color: white; }
+        tr:hover { background: #f5f5f5; }
+        .success { background: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        .form-inline { margin-top: 20px; padding: 20px; background: #f9f9f9; border-radius: 5px; }
+        .form-inline select, .form-inline button { padding: 10px; margin-right: 10px; border-radius: 5px; border: 1px solid #ddd; }
+        .form-inline button { background: #667eea; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Müşteri Hesapları: <span th:text="${musteri.adSoyad}"></span></h1>
+        <a href="/banka/musteriler" class="btn">Müşteriler</a>
+        <a href="/banka" class="btn">Ana Sayfa</a>
+        
+        <div th:if="${success}" class="success" th:text="${success}"></div>
+        <div th:if="${error}" class="error" th:text="${error}"></div>
+        
+        <div class="form-inline">
+            <form th:action="@{/banka/hesap/olustur}" method="post">
+                <input type="hidden" name="musteriId" th:value="${musteri.id}">
+                <select name="hesapTipi" required>
+                    <option value="">Hesap Tipi Seçin</option>
+                    <option value="VADESIZ">Vadesiz</option>
+                    <option value="VADELI">Vadeli</option>
+                    <option value="TASARRUF">Tasarruf</option>
+                </select>
+                <button type="submit">Yeni Hesap Oluştur</button>
+            </form>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Hesap No</th>
+                    <th>Hesap Tipi</th>
+                    <th>Bakiye</th>
+                    <th>Oluşturma Tarihi</th>
+                    <th>Durum</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${#lists.isEmpty(hesaplar)}">
+                    <td colspan="6" style="text-align: center; padding: 20px;">Henüz hesap bulunmamaktadır.</td>
+                </tr>
+                <tr th:each="hesap : ${hesaplar}">
+                    <td th:text="${hesap.hesapNo}"></td>
+                    <td th:text="${hesap.hesapTipi}"></td>
+                    <td th:text="${#numbers.formatDecimal(hesap.bakiye, 0, 'COMMA', 2, 'POINT')}">₺</td>
+                    <td th:text="${#temporals.format(hesap.olusturmaTarihi, 'dd/MM/yyyy HH:mm')}"></td>
+                    <td>
+                        <span th:if="${hesap.aktif}" style="color: green;">Aktif</span>
+                        <span th:unless="${hesap.aktif}" style="color: red;">Pasif</span>
+                    </td>
+                    <td>
+                        <a th:href="@{/banka/hesap/{hesapNo}(hesapNo=${hesap.hesapNo})}" style="color: #667eea;">Detay</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+C:\Users\Asus\OneDrive\Masaüstü\Banka uygulaması\src\main\java\com\banka\controller\BankaController.java
+C:\Users\Asus\OneDrive\Masaüstü\Banka uygulaması\src\main\java\com\banka\entity\Hesap.java
+C:\Users\Asus\OneDrive\Masaüstü\Banka uygulaması\src\main\java\com\banka\service\EmailQueueService.java
+C:\Users\Asus\OneDrive\Masaüstü\Banka uygulaması\src\main\java\com\banka\BankaApplication.java
+C:\Users\Asus\OneDrive\Masaüstü\Banka uygulaması\src\main\java\com\banka\entity\Islem.java
+C:\Users\Asus\OneDrive\Masaüstü\Banka uygulaması\src\main\java\com\banka\service\BankaService.java
+C:\Users\Asus\OneDrive\Masaüstü\Banka uygulaması\src\main\java\com\banka\repository\IslemRepository.java
+C:\Users\Asus\OneDrive\Masaüstü\Banka uygulaması\src\main\java\com\banka\service\EmailService.java
+C:\Users\Asus\OneDrive\Masaüstü\Banka uygulaması\src\main\java\com\banka\entity\Musteri.java
+C:\Users\Asus\OneDrive\Masaüstü\Banka uygulaması\src\main\java\com\banka\repository\HesapRepository.java
+C:\Users\Asus\OneDrive\Masaüstü\Banka uygulaması\src\main\java\com\banka\repository\MusteriRepository.java
+C:\Users\Asus\OneDrive\Masaüstü\Banka uygulaması\src\main\java\com\banka\dto\EmailTask.java
